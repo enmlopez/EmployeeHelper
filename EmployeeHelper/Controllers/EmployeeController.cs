@@ -37,7 +37,7 @@ namespace EmployeeHelper.Controllers
                 return View(model);
             }
             var service = CreateEmployeeService();
-
+            
             if (service.CreateEmployee(model))
             {
                 TempData["SaveResult"] = "Employee successfully created.";
@@ -46,6 +46,15 @@ namespace EmployeeHelper.Controllers
 
             ModelState.AddModelError("", "Employee could not be created");
             return View();
+        }
+
+        //GET: Employee/Details
+        public ActionResult Details(int id)
+        {
+            EmployeeService service = CreateEmployeeService();
+            EmployeeDetail model = service.GetEmployeeById(id);
+
+            return View(model);
         }
 
         private EmployeeService CreateEmployeeService()

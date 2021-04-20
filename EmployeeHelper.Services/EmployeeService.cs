@@ -54,5 +54,24 @@ namespace EmployeeHelper.Services
                 return query.ToArray();
             }
         }
+
+        public EmployeeDetail GetEmployeeById(int id)
+        {
+            using(ApplicationDbContext ctx = new ApplicationDbContext())
+            {
+                Employee entity =
+                    ctx.
+                    Employees.
+                    SingleOrDefault(e => e.EmployeeId == id && e.EmployeeGuid == _userId);
+                return new EmployeeDetail
+                {
+                    EmployeeId = entity.EmployeeId,
+                    FirstName = entity.FirstName,
+                    LastName = entity.LastName,
+                    HiringDate = entity.HiringDate.Date,
+                    Shift = entity.Shifts
+                };
+            }
+        }
     }
 }
