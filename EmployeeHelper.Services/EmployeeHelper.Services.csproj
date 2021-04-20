@@ -54,11 +54,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EmployeeService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EmployeeHelper.Data\EmployeeHelper.Data.csproj">
+      <Project>{1aa4e6e7-6fbc-46f5-af6e-f5dcc14d97c5}</Project>
+      <Name>EmployeeHelper.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EmployeeHelper.Models\EmployeeHelper.Models.csproj">
+      <Project>{56089415-3276-47be-ae66-976104597fc9}</Project>
+      <Name>EmployeeHelper.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

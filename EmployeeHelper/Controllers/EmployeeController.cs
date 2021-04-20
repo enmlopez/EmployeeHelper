@@ -1,4 +1,6 @@
 ﻿using EmployeeHelper.Models.EmployeeModels;
+using EmployeeHelper.Services;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,8 +15,44 @@ namespace EmployeeHelper.Controllers
         // GET: Employee
         public ActionResult Index()
         {
-            var model = new EmployeeListItem[0];
+            EmployeeService service = CreateEmployeeService();
+            IEnumerable<EmployeeListItem> model = service.GetEmployees();
+
             return View(model); 
+        }
+
+        //GET: Employee/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        //GET: Employee/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(EmployeeCreate model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            var service = CreateEmployeeService();
+
+            if (service.CreateEmployee(model))
+            {
+                TempData["SaveResult"] = "Employee successfully created.";
+                return RedirectToAction("Index");
+            }
+
+            ModelState.AddModelError("", "Employee could not be created");
+            return View();
+        }
+
+        private EmployeeService CreateEmployeeService()
+        {
+            Guid userId = Guid.Parse(User.Identity.GetUserId());
+            EmployeeService service = new EmployeeService(userId);
+            return service;
         }
     }
 }
