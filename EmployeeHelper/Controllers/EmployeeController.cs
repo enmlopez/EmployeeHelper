@@ -57,7 +57,7 @@ namespace EmployeeHelper.Controllers
             return View(model);
         }
 
-        //GET: Employee/Edit
+        //GET: Employee/Edit{id}
         public ActionResult Update(int id)
         {
             EmployeeService service = CreateEmployeeService();
@@ -74,7 +74,7 @@ namespace EmployeeHelper.Controllers
             return View(model);
         }
 
-        //POST: Employee/Edit
+        //POST: Employee/Edit/{id}
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Update(int id, EmployeeEdit model)
@@ -101,6 +101,28 @@ namespace EmployeeHelper.Controllers
             return View();
         }
 
+        //GET: Employee/Delete/{id}
+        [ActionName("Delete")]
+        public ActionResult Delete(int id)
+        {
+            EmployeeService service = CreateEmployeeService();
+            EmployeeDetail model = service.GetEmployeeById(id);
+
+            return View(model);
+        }
+
+        //POST Employee/Delete{id}
+        [HttpPost]
+        [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteEmployee(int id)
+        {
+            EmployeeService service = CreateEmployeeService();
+            service.DeleteEmployee(id);
+            TempData["SaveResult"] = "Employee successfully deleted.";
+
+            return RedirectToAction("Index");
+        }
         private EmployeeService CreateEmployeeService()
         {
             Guid userId = Guid.Parse(User.Identity.GetUserId());

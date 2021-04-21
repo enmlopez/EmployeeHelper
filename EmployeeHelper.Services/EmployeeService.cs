@@ -57,7 +57,7 @@ namespace EmployeeHelper.Services
 
         public EmployeeDetail GetEmployeeById(int id)
         {
-            using(ApplicationDbContext ctx = new ApplicationDbContext())
+            using (ApplicationDbContext ctx = new ApplicationDbContext())
             {
                 Employee entity =
                     ctx.
@@ -74,9 +74,9 @@ namespace EmployeeHelper.Services
             }
         }
 
-        public bool UpdateEmployee (EmployeeEdit model)
+        public bool UpdateEmployee(EmployeeEdit model)
         {
-            using(ApplicationDbContext ctx = new ApplicationDbContext())
+            using (ApplicationDbContext ctx = new ApplicationDbContext())
             {
                 Employee entity = ctx.Employees.SingleOrDefault(e => e.EmployeeId == model.EmployeeId && e.EmployeeGuid == _userId);
                 entity.FirstName = model.FirstName;
@@ -93,7 +93,7 @@ namespace EmployeeHelper.Services
             using (ApplicationDbContext ctx = new ApplicationDbContext())
             {
                 Employee entity = ctx.Employees.SingleOrDefault(e => e.EmployeeId == id && e.EmployeeGuid == _userId);
-                
+
                 ctx.Employees.Remove(entity);
 
                 return ctx.SaveChanges() == 1;
