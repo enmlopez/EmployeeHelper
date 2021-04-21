@@ -18,7 +18,7 @@ namespace EmployeeHelper.Controllers
             EmployeeService service = CreateEmployeeService();
             IEnumerable<EmployeeListItem> model = service.GetEmployees();
 
-            return View(model); 
+            return View(model);
         }
 
         //GET: Employee/Create
@@ -37,7 +37,7 @@ namespace EmployeeHelper.Controllers
                 return View(model);
             }
             var service = CreateEmployeeService();
-            
+
             if (service.CreateEmployee(model))
             {
                 TempData["SaveResult"] = "Employee successfully created.";
@@ -55,6 +55,50 @@ namespace EmployeeHelper.Controllers
             EmployeeDetail model = service.GetEmployeeById(id);
 
             return View(model);
+        }
+
+        //GET: Employee/Edit
+        public ActionResult Update(int id)
+        {
+            EmployeeService service = CreateEmployeeService();
+            EmployeeDetail detail = service.GetEmployeeById(id);
+            EmployeeEdit model = new EmployeeEdit
+            {
+                EmployeeId = detail.EmployeeId,
+                FirstName = detail.FirstName,
+                LastName = detail.LastName,
+                HiringDate = detail.HiringDate,
+                Shifts = detail.Shifts
+            };
+
+            return View(model);
+        }
+
+        //POST: Employee/Edit
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Update(int id, EmployeeEdit model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            if (model.EmployeeId != id)
+            {
+                ModelState.AddModelError("", "ID does not match");
+                return View(model);
+            }
+
+            EmployeeService service = CreateEmployeeService();
+            if (service.UpdateEmployee(model))
+            {
+                TempData["SaveResult"] = "Your employee was updated.";
+                return RedirectToAction("Index");
+            }
+
+            ModelState.AddModelError("", "Your employee could not be updated.");
+            return View();
         }
 
         private EmployeeService CreateEmployeeService()

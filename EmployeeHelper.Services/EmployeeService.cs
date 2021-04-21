@@ -69,8 +69,34 @@ namespace EmployeeHelper.Services
                     FirstName = entity.FirstName,
                     LastName = entity.LastName,
                     HiringDate = entity.HiringDate.Date,
-                    Shift = entity.Shifts
+                    Shifts = entity.Shifts
                 };
+            }
+        }
+
+        public bool UpdateEmployee (EmployeeEdit model)
+        {
+            using(ApplicationDbContext ctx = new ApplicationDbContext())
+            {
+                Employee entity = ctx.Employees.SingleOrDefault(e => e.EmployeeId == model.EmployeeId && e.EmployeeGuid == _userId);
+                entity.FirstName = model.FirstName;
+                entity.LastName = model.LastName;
+                entity.HiringDate = model.HiringDate;
+                entity.Shifts = model.Shifts;
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public bool DeleteEmployee(int id)
+        {
+            using (ApplicationDbContext ctx = new ApplicationDbContext())
+            {
+                Employee entity = ctx.Employees.SingleOrDefault(e => e.EmployeeId == id && e.EmployeeGuid == _userId);
+                
+                ctx.Employees.Remove(entity);
+
+                return ctx.SaveChanges() == 1;
             }
         }
     }

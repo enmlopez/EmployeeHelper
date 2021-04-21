@@ -56,6 +56,7 @@
   <ItemGroup>
     <Compile Include="EmployeeModels\EmployeeCreate.cs" />
     <Compile Include="EmployeeModels\EmployeeDetail.cs" />
+    <Compile Include="EmployeeModels\EmployeeEdit.cs" />
     <Compile Include="EmployeeModels\EmployeeListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
