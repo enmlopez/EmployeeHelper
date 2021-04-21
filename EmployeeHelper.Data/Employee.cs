@@ -34,6 +34,6 @@ namespace EmployeeHelper.Data
         [Required]
         public DateTime HiringDate { get; set; }
 
-        public List<OverTime> ListOfOvertime { get; set; }
+        public ICollection<OverTime> ListOfOvertime { get; set; } = new List<OverTime>();
     }
 }

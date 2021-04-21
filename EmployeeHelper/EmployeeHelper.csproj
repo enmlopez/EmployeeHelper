@@ -171,6 +171,7 @@
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OverTimeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -240,6 +241,8 @@
     <Content Include="Views\Employee\Details.cshtml" />
     <Content Include="Views\Employee\Update.cshtml" />
     <Content Include="Views\Employee\Delete.cshtml" />
+    <Content Include="Views\OverTime\Index.cshtml" />
+    <Content Include="Views\OverTime\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
