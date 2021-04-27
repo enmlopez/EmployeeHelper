@@ -27,7 +27,7 @@ namespace EmployeeHelper.Controllers
         //POST: OverTime/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create (OverTimeCreate model)
+        public ActionResult Create(OverTimeCreate model)
         {
             if (!ModelState.IsValid)
             {
@@ -36,7 +36,7 @@ namespace EmployeeHelper.Controllers
             OverTimeServices service = new OverTimeServices();
             if (service.OTCreate(model))
             {
-                TempData["SaveResult"] = $"OverTime {model.OTDay} created.";
+                TempData["SaveOTResult"] = $"OverTime {model.OTDay} created.";
                 return RedirectToAction("Index");
             }
 
@@ -45,6 +45,78 @@ namespace EmployeeHelper.Controllers
             return View(model);
         }
 
+        //GET: OverTime/Details
+        public ActionResult Details(int id)
+        {
+            OverTimeServices service = new OverTimeServices();
+            OverTimeDetail model = service.GetOTById(id);
+            return View(model);
+        }
 
+        //GET: OverTime/Edit/{id}
+        public ActionResult Edit(int id)
+        {
+            OverTimeServices service = new OverTimeServices();
+            OverTimeDetail detail = service.GetOTById(id);
+            OverTimeEdit model = new OverTimeEdit
+            {
+                OTId = detail.OTId,
+                IsAvailable = detail.IsAvailable,
+                OTDay = detail.OTDay,
+                HoursWorked = detail.HoursWorked
+            };
+            return View(model);
+        }
+
+        //POST: OverTime/Edit{id}
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(int id, OverTimeEdit model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            if (model.OTId != id)
+            {
+                ModelState.AddModelError("", "ID does not match.");
+                return View(model);
+            }
+
+            OverTimeServices service = new OverTimeServices();
+
+            if (service.UpdateOverTime(model))
+            {
+                TempData["SaveOTResult"] = $"OverTime {model.OTDay} was updated.";
+                return RedirectToAction("Index");
+            }
+
+            ModelState.AddModelError("", "OverTime could not be updated.");
+            return View();
+        }
+
+        //GET: OverTime/Delete/{id}
+        [ActionName("Delete")]
+        public ActionResult Delete(int id)
+        {
+            OverTimeServices service = new OverTimeServices();
+            OverTimeDetail model = service.GetOTById(id);
+
+            return View(model);
+        }
+
+        //POST: OverTime/Delete/{id}
+        [HttpPost]
+        [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteOT(int id)
+        {
+            OverTimeServices service = new OverTimeServices();
+            service.DeleteOverTime(id);
+            TempData["SaveOTResult"] = $"OverTime {id} was removed.";
+
+            return RedirectToAction("Index");
+        }
     }
 }

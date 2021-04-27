@@ -1,5 +1,4 @@
-﻿using EmployeeHelper.Data; // remove if not needed
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -8,20 +7,23 @@ using System.Threading.Tasks;
 
 namespace EmployeeHelper.Models.OTModels
 {
-    public class OverTimeDetail
+    public class OverTimeEdit
     {
-        [Display(Name = "ID")]
+        [Display(Name ="ID")]
         public int OTId { get; set; }
 
-        [Display(Name = "Available?")]
+        [Required]
+        [Display(Name ="Available?")]
         public bool IsAvailable { get; set; }
 
-        [Display(Name = "OT")]
+        [Required]
+        [Display(Name ="OT")]
         public DateTimeOffset OTDay { get; set; }
 
-        [Display(Name = "Hours?")]
+        [Required]
+        [Display(Name ="Hours?")]
         public decimal? HoursWorked { get; set; }
 
-        public string Employee { get; set; }
+        public int? EmployeeId { get; set; }
     }
 }

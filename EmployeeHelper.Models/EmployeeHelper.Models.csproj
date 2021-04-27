@@ -60,6 +60,7 @@
     <Compile Include="EmployeeModels\EmployeeListItem.cs" />
     <Compile Include="OTModels\OverTimeCreate.cs" />
     <Compile Include="OTModels\OverTimeDetail.cs" />
+    <Compile Include="OTModels\OverTimeEdit.cs" />
     <Compile Include="OTModels\OverTimeListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

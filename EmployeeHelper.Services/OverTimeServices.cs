@@ -16,6 +16,8 @@ namespace EmployeeHelper.Services
             {
                 IsAvailable = model.IsAvailable,
                 OTDay = model.OTDay,
+                HoursWorked = model.HoursWorked,
+                EmployeeId = model.EmployeeId
             };
 
             using (ApplicationDbContext ctx = new ApplicationDbContext())
@@ -46,15 +48,54 @@ namespace EmployeeHelper.Services
             using (ApplicationDbContext ctx = new ApplicationDbContext())
             {
                 OverTime entity = ctx.OverTimeDays.SingleOrDefault(e => e.OTId == id);
-                return new OverTimeDetail
+                if (entity.Employee != null)
                 {
-                    OTId = entity.OTId,
-                    OTDay = entity.OTDay,
-                    IsAvailable = entity.IsAvailable,
-                    HoursWorked = entity.HoursWorked,
-                    Employee = entity.Employee.FirstName + "" + entity.Employee.LastName
-                };
+                    return new OverTimeDetail
+                    {
+                        OTId = entity.OTId,
+                        OTDay = entity.OTDay,
+                        IsAvailable = entity.IsAvailable,
+                        HoursWorked = entity.HoursWorked,
+                        Employee = entity.Employee.FirstName + "" + entity.Employee.LastName
+                    };
+                }
+                else
+                {
+                    return new OverTimeDetail
+                    {
+                        OTId = entity.OTId,
+                        OTDay = entity.OTDay,
+                        IsAvailable = entity.IsAvailable,
+                        HoursWorked = entity.HoursWorked
+                    };
+                }
 
+            }
+        }
+
+        public bool UpdateOverTime(OverTimeEdit model)
+        {
+            using (ApplicationDbContext ctx = new ApplicationDbContext())
+            {
+                OverTime entity = ctx.OverTimeDays.SingleOrDefault(e => e.OTId == model.OTId);
+                entity.IsAvailable = model.IsAvailable;
+                entity.OTDay = model.OTDay;
+                entity.HoursWorked = model.HoursWorked;
+                entity.EmployeeId = model.EmployeeId;
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public bool DeleteOverTime(int id)
+        {
+            using (ApplicationDbContext ctx = new ApplicationDbContext())
+            {
+                OverTime entity = ctx.OverTimeDays.SingleOrDefault(e => e.OTId == id);
+
+                ctx.OverTimeDays.Remove(entity);
+
+                return ctx.SaveChanges() == 1;
             }
         }
     }

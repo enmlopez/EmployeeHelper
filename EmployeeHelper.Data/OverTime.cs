@@ -19,8 +19,7 @@ namespace EmployeeHelper.Data
         [Required]
         public DateTimeOffset OTDay { get; set; }
 
-        [Required]
-        public decimal HoursWorked { get; set; }
+        public decimal? HoursWorked { get; set; }
 
         [ForeignKey(nameof(Employee))]
         public int? EmployeeId { get; set; }

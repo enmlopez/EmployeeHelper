@@ -16,5 +16,9 @@ namespace EmployeeHelper.Models.OTModels
         [Required]
         [Display(Name = "OverTime")]
         public DateTimeOffset OTDay { get; set; }
+
+        public decimal? HoursWorked { get; set; }
+
+        public int? EmployeeId { get; set; }
     }
 }
