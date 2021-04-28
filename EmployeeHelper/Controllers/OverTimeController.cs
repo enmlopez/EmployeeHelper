@@ -36,7 +36,7 @@ namespace EmployeeHelper.Controllers
             OverTimeServices service = new OverTimeServices();
             if (service.OTCreate(model))
             {
-                TempData["SaveOTResult"] = $"OverTime {model.OTDay} created.";
+                TempData["SaveOTResult"] = $"OverTime {model.OTDay.ToLongDateString()} created.";
                 return RedirectToAction("Index");
             }
 
@@ -88,7 +88,7 @@ namespace EmployeeHelper.Controllers
 
             if (service.UpdateOverTime(model))
             {
-                TempData["SaveOTResult"] = $"OverTime {model.OTDay} was updated.";
+                TempData["SaveOTResult"] = $"OverTime {model.OTDay.ToLongDateString()} was updated.";
                 return RedirectToAction("Index");
             }
 
@@ -113,8 +113,8 @@ namespace EmployeeHelper.Controllers
         public ActionResult DeleteOT(int id)
         {
             OverTimeServices service = new OverTimeServices();
+            TempData["SaveOTResult"] = $"OverTime {service.GetOTById(id).OTDay.ToLongDateString()} was removed.";
             service.DeleteOverTime(id);
-            TempData["SaveOTResult"] = $"OverTime {id} was removed.";
 
             return RedirectToAction("Index");
         }

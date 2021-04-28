@@ -41,7 +41,8 @@
                 @Html.DisplayFor(modelItem => item.OTId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.OTDay)
+                @{ string formatDate = item.OTDay.ToLongDateString();}
+                @Html.DisplayFor(modelItem => formatDate)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IsAvailable)

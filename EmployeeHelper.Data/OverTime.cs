@@ -17,7 +17,7 @@ namespace EmployeeHelper.Data
         public bool IsAvailable { get; set; }
 
         [Required]
-        public DateTimeOffset OTDay { get; set; }
+        public DateTime OTDay { get; set; }
 
         public decimal? HoursWorked { get; set; }
 

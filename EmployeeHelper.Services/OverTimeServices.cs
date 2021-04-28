@@ -56,7 +56,7 @@ namespace EmployeeHelper.Services
                         OTDay = entity.OTDay,
                         IsAvailable = entity.IsAvailable,
                         HoursWorked = entity.HoursWorked,
-                        Employee = entity.Employee.FirstName + "" + entity.Employee.LastName
+                        Employee = entity.Employee.FirstName + " " + entity.Employee.LastName
                     };
                 }
                 else

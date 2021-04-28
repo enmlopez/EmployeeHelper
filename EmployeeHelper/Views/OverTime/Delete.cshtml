@@ -32,7 +32,8 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.OTDay)
+            @{ string formatDate = Model.OTDay.ToLongDateString();}
+            @Html.DisplayFor(model => formatDate)
         </dd>
 
         <dt>

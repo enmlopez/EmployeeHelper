@@ -18,7 +18,7 @@ namespace EmployeeHelper.Models.OTModels
 
         [Required]
         [Display(Name ="OT")]
-        public DateTimeOffset OTDay { get; set; }
+        public DateTime OTDay { get; set; }
 
         [Required]
         [Display(Name ="Hours?")]

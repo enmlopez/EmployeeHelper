@@ -13,7 +13,7 @@ namespace EmployeeHelper.Models.OTModels
         public int OTId { get; set; }
 
         [Display(Name = "OT")]
-        public DateTimeOffset OTDay { get; set; }
+        public DateTime OTDay { get; set; }
 
         [Display(Name = "Available ?")]
         public bool IsAvailable { get; set; }

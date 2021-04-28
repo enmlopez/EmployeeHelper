@@ -39,7 +39,8 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.HiringDate)
+            @{ string formatDate = Model.HiringDate.ToLongDateString();}
+            @Html.DisplayFor(model => formatDate)
         </dd>
 
     </dl>

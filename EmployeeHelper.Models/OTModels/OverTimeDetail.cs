@@ -17,7 +17,7 @@ namespace EmployeeHelper.Models.OTModels
         public bool IsAvailable { get; set; }
 
         [Display(Name = "OT")]
-        public DateTimeOffset OTDay { get; set; }
+        public DateTime OTDay { get; set; }
 
         [Display(Name = "Hours?")]
         public decimal? HoursWorked { get; set; }
