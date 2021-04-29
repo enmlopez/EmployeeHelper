@@ -54,6 +54,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BTModels\BTCreate.cs" />
+    <Compile Include="BTModels\BTDetail.cs" />
+    <Compile Include="BTModels\BTEdit.cs" />
+    <Compile Include="BTModels\BTListItem.cs" />
     <Compile Include="EmployeeModels\EmployeeCreate.cs" />
     <Compile Include="EmployeeModels\EmployeeDetail.cs" />
     <Compile Include="EmployeeModels\EmployeeEdit.cs" />

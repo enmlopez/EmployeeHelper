@@ -1,27 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EmployeeHelper.Data
+namespace EmployeeHelper.Models.BTModels
 {
-    public class BulkTechSamples
+    public class BTEdit
     {
-        [Key]
+        [Display(Name = "ID")]
         public int BTId { get; set; }
 
+        [Display(Name = "Complete?")]
         public bool IsComplete { get; set; }
 
-        [Required]
+        [Display(Name = "Due Date")]
         public DateTime DueOnDate { get; set; }
 
+        [Display(Name = "Completion Date")]
         public DateTime CompletedOnDate { get; set; }
 
-        [ForeignKey(nameof(Employee))]
         public int? EmployeeId { get; set; }
-        public virtual Employee Employee { get; set; }
     }
 }
