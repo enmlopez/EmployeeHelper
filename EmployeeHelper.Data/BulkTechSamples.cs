@@ -18,7 +18,7 @@ namespace EmployeeHelper.Data
         [Required]
         public DateTime DueOnDate { get; set; }
 
-        public DateTime CompletedOnDate { get; set; }
+        public DateTime? CompletedOnDate { get; set; }
 
         [ForeignKey(nameof(Employee))]
         public int? EmployeeId { get; set; }

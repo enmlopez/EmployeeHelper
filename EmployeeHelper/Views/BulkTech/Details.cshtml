@@ -1,0 +1,60 @@
+﻿@model EmployeeHelper.Models.BTModels.BTDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>BTDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BTId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BTId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsComplete)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsComplete)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DueOnDate)
+        </dt>
+
+        <dd>
+            @{ string formatDate = Model.DueOnDate.ToLongDateString();}
+            @Html.DisplayFor(model => formatDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CompletedOnDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompletedOnDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.BTId }) |
+    @Html.ActionLink("Completed By", "CompletedBy", new { id = Model.BTId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

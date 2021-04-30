@@ -1,0 +1,65 @@
+﻿@model EmployeeHelper.Models.BTModels.BTDetail
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>BTDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BTId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BTId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsComplete)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsComplete)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DueOnDate)
+        </dt>
+
+        <dd>
+            @{ string formatDate = Model.DueOnDate.ToLongDateString();}
+            @Html.DisplayFor(model => formatDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CompletedOnDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompletedOnDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

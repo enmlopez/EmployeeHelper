@@ -168,6 +168,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BulkTechController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -246,6 +247,12 @@
     <Content Include="Views\OverTime\Details.cshtml" />
     <Content Include="Views\OverTime\Edit.cshtml" />
     <Content Include="Views\OverTime\Delete.cshtml" />
+    <Content Include="Views\BulkTech\Index.cshtml" />
+    <Content Include="Views\BulkTech\Create.cshtml" />
+    <Content Include="Views\BulkTech\Edit.cshtml" />
+    <Content Include="Views\BulkTech\CompletedBy.cshtml" />
+    <Content Include="Views\BulkTech\Details.cshtml" />
+    <Content Include="Views\BulkTech\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

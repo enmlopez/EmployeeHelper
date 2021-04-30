@@ -23,6 +23,92 @@ namespace EmployeeHelper.Services
                 return ctx.SaveChanges() == 1;
             }
         }
+        public IEnumerable<BTListItem> GetBT()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                IEnumerable<BTListItem> query = ctx
+                    .BulkTechSamples
+                    .Select(e => new BTListItem
+                    {
+                        BTId = e.BTId,
+                        IsComplete = e.IsComplete,
+                        DueOnDate = e.DueOnDate
+                    });
+                return query.ToArray();
+            }
+        }
 
+        public BTDetail GetBTById(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                BulkTechSamples entity = ctx.BulkTechSamples.SingleOrDefault(e => e.BTId == id);
+                if (entity.Employee != null)
+                {
+                    return new BTDetail
+                    {
+                        BTId = entity.BTId,
+                        IsComplete = entity.IsComplete,
+                        DueOnDate = entity.DueOnDate,
+                        CompletedOnDate = entity.CompletedOnDate,
+                        Employee = entity.Employee.FirstName + " " + entity.Employee.LastName
+                    };
+                }
+                else
+                {
+                    return new BTDetail
+                    {
+                        BTId = entity.BTId,
+                        IsComplete = entity.IsComplete,
+                        DueOnDate = entity.DueOnDate,
+                        CompletedOnDate = entity.CompletedOnDate
+                    };
+                }
+            }
+        }
+
+        public bool UpdateBT(BTEdit model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                BulkTechSamples entity = ctx.BulkTechSamples.SingleOrDefault(e => e.BTId == model.BTId);
+                //entity.CompletedOnDate = DateTime.Now;
+                entity.DueOnDate = model.DueOnDate;
+                entity.IsComplete = model.IsComplete;
+                entity.EmployeeId = model.EmployeeId;
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
+        //TEST
+        public bool UpdateBTCompletedBy(BTEdit model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                BulkTechSamples entity = ctx.BulkTechSamples.SingleOrDefault(e => e.BTId == model.BTId);
+                //entity.DueOnDate = model.DueOnDate;
+                entity.CompletedOnDate = DateTime.Now;
+                entity.IsComplete = model.IsComplete;
+                entity.EmployeeId = model.EmployeeId;
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
+        //END OF TEST
+
+        public bool DeleteBT(int id)
+        {
+            using(var ctx = new ApplicationDbContext())
+            {
+                BulkTechSamples entity = ctx.BulkTechSamples.SingleOrDefault(e=> e.BTId == id);
+
+                ctx.BulkTechSamples.Remove(entity);
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
     }
+
 }
