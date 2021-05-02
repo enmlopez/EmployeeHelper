@@ -17,7 +17,8 @@ namespace EmployeeHelper.Services
                 IsAvailable = model.IsAvailable,
                 OTDay = model.OTDay,
                 HoursWorked = model.HoursWorked,
-                EmployeeId = model.EmployeeId
+                EmployeeId = model.EmployeeId,
+                Days = model.Days
             };
 
             using (ApplicationDbContext ctx = new ApplicationDbContext())
@@ -37,7 +38,8 @@ namespace EmployeeHelper.Services
                     {
                         OTId = e.OTId,
                         OTDay = e.OTDay,
-                        IsAvailable = e.IsAvailable
+                        IsAvailable = e.IsAvailable,
+                        Days = e.Days
                     });
                 return query.ToArray();
             }
@@ -56,6 +58,7 @@ namespace EmployeeHelper.Services
                         OTDay = entity.OTDay,
                         IsAvailable = entity.IsAvailable,
                         HoursWorked = entity.HoursWorked,
+                        Days = entity.Days,
                         Employee = entity.Employee.FirstName + " " + entity.Employee.LastName
                     };
                 }
@@ -66,7 +69,8 @@ namespace EmployeeHelper.Services
                         OTId = entity.OTId,
                         OTDay = entity.OTDay,
                         IsAvailable = entity.IsAvailable,
-                        HoursWorked = entity.HoursWorked
+                        HoursWorked = entity.HoursWorked,
+                        Days = entity.Days,
                     };
                 }
 
@@ -82,6 +86,7 @@ namespace EmployeeHelper.Services
                 entity.OTDay = model.OTDay;
                 entity.HoursWorked = model.HoursWorked;
                 entity.EmployeeId = model.EmployeeId;
+                entity.Days = model.Days;
 
                 return ctx.SaveChanges() == 1;
             }

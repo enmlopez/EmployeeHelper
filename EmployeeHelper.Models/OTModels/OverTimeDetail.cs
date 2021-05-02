@@ -22,6 +22,8 @@ namespace EmployeeHelper.Models.OTModels
         [Display(Name = "Hours?")]
         public decimal? HoursWorked { get; set; }
 
+        public Days Days { get; set; }
+
         public string Employee { get; set; }
     }
 }

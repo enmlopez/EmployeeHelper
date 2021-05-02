@@ -8,6 +8,11 @@ using System.Threading.Tasks;
 
 namespace EmployeeHelper.Data
 {
+    public enum Days
+    {
+        Day = 0,
+        Night
+    }
     public class OverTime
     {
         [Key]
@@ -20,6 +25,8 @@ namespace EmployeeHelper.Data
         public DateTime OTDay { get; set; }
 
         public decimal? HoursWorked { get; set; }
+
+        public Days Days { get; set; }
 
         [ForeignKey(nameof(Employee))]
         public int? EmployeeId { get; set; }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EmployeeHelper.Data;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -17,5 +18,8 @@ namespace EmployeeHelper.Models.OTModels
 
         [Display(Name = "Available ?")]
         public bool IsAvailable { get; set; }
+
+        [Display(Name ="Day/Night")]
+        public Days Days { get; set; }
     }
 }

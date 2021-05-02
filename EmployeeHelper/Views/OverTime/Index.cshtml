@@ -29,6 +29,9 @@
             @Html.DisplayNameFor(model => model.OTDay)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Days)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.IsAvailable)
         </th>
         <th></th>
@@ -43,6 +46,9 @@
             <td>
                 @{ string formatDate = item.OTDay.ToLongDateString();}
                 @Html.DisplayFor(modelItem => formatDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Days)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IsAvailable)

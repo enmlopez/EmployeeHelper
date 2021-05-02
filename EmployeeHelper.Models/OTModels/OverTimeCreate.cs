@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EmployeeHelper.Data;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -18,6 +19,8 @@ namespace EmployeeHelper.Models.OTModels
         public DateTime OTDay { get; set; }
 
         public decimal? HoursWorked { get; set; }
+
+        public Days Days { get; set; }
 
         public int? EmployeeId { get; set; }
     }
