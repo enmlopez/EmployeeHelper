@@ -61,9 +61,10 @@ namespace EmployeeHelper.Controllers
             OverTimeEdit model = new OverTimeEdit
             {
                 OTId = detail.OTId,
-                IsAvailable = detail.IsAvailable,
+                //IsAvailable = detail.IsAvailable,
                 OTDay = detail.OTDay,
-                HoursWorked = detail.HoursWorked
+                //HoursWorked = detail.HoursWorked
+                Days = detail.Days
             };
             return View(model);
         }
@@ -95,6 +96,53 @@ namespace EmployeeHelper.Controllers
             ModelState.AddModelError("", "OverTime could not be updated.");
             return View();
         }
+
+        // // // // // // // //
+
+        //GET: OverTime/Edit/{id}
+        public ActionResult Work(int id)
+        {
+            OverTimeServices service = new OverTimeServices();
+            OverTimeDetail detail = service.GetOTById(id);
+            OverTimeWork model = new OverTimeWork
+            {
+                OTId = detail.OTId,
+                IsAvailable = detail.IsAvailable,
+                OTDay = detail.OTDay,
+                HoursWorked = detail.HoursWorked,
+            };
+            return View(model);
+        }
+
+        //POST: OverTime/Edit{id}
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Work(int id, OverTimeWork model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            if (model.OTId != id)
+            {
+                ModelState.AddModelError("", "ID does not match.");
+                return View(model);
+            }
+
+            OverTimeServices service = new OverTimeServices();
+
+            if (service.WorkOverTime(model))
+            {
+                TempData["SaveOTResult"] = $"OverTime {model.OTDay.ToLongDateString()} was updated.";
+                return RedirectToAction("Index");
+            }
+
+            ModelState.AddModelError("", "OverTime could not be updated.");
+            return View();
+        }
+
+        // // // // // // // //
 
         //GET: OverTime/Delete/{id}
         [ActionName("Delete")]

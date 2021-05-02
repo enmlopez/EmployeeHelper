@@ -54,6 +54,9 @@
         <th>
             @Html.DisplayNameFor(model => model.OTList[0].OTDay)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OTList[0].Days)
+        </th>
         <th></th>
     </tr>
 
@@ -68,7 +71,10 @@
                 @Html.DisplayFor(modelItem => formatDate2)
             </td>
             <td>
-               | @Html.ActionLink("Details", "Details","OverTime", new { id = item.OTId }, "") |
+                @Html.DisplayFor(modelItem => item.Days)
+            </td>
+            <td>
+                | @Html.ActionLink("Details", "Details", "OverTime", new { id = item.OTId }, "") |
             </td>
         </tr>
     }
@@ -103,7 +109,7 @@
                 @Html.DisplayFor(modelItem => formatDate3)
             </td>
             <td>
-               | @Html.ActionLink("Details", "Details", "BulkTech", new { id = item.BTId }, "") |
+                | @Html.ActionLink("Details", "Details", "BulkTech", new { id = item.BTId }, "") |
             </td>
         </tr>
     }
