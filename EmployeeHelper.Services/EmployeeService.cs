@@ -1,4 +1,5 @@
 ﻿using EmployeeHelper.Data;
+using EmployeeHelper.Models.BTModels;
 using EmployeeHelper.Models.EmployeeModels;
 using EmployeeHelper.Models.OTModels;
 using System;
@@ -95,6 +96,12 @@ namespace EmployeeHelper.Services
                     {
                         OTId = e.OTId,
                         OTDay = e.OTDay
+                    }).ToList(),
+                    BTList = entity.ListOfBTSamples.Select(e => new BTListItem
+                    {
+                        BTId = e.BTId,
+                        DueOnDate = e.DueOnDate,
+                        IsComplete = e.IsComplete
                     }).ToList()
                 };
             }

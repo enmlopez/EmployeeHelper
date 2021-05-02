@@ -1,4 +1,5 @@
 ﻿using EmployeeHelper.Data;
+using EmployeeHelper.Models.BTModels;
 //test
 using EmployeeHelper.Models.OTModels;
 //end test
@@ -27,8 +28,10 @@ namespace EmployeeHelper.Models.EmployeeModels
 
         public Shift Shifts { get; set; }
 
-        //test
         public virtual List<OverTimeListItem> OTList { get; set; }
+
+        //test
+        public virtual List<BTListItem> BTList { get; set; }
         //end test
     }
 }
