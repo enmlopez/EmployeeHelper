@@ -1,4 +1,7 @@
 ﻿using EmployeeHelper.Data;
+//test
+using EmployeeHelper.Models.OTModels;
+//end test
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -23,5 +26,9 @@ namespace EmployeeHelper.Models.EmployeeModels
         public DateTime HiringDate { get; set; }
 
         public Shift Shifts { get; set; }
+
+        //test
+        public virtual List<OverTimeListItem> OTList { get; set; }
+        //end test
     }
 }

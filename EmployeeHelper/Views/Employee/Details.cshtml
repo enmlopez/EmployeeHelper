@@ -45,6 +45,36 @@
 
     </dl>
 </div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.OTList[0].OTId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OTList[0].OTDay)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.OTList)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OTId)
+            </td>
+            <td>
+                @{ string formatDate2 = item.OTDay.ToLongDateString();}
+                @Html.DisplayFor(modelItem => formatDate2)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.OTId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.OTId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.OTId })
+            </td>
+        </tr>
+    }
+
+</table>
 <p>
     @Html.ActionLink("Update", "Update", new { id= Model.EmployeeId }) |
     @Html.ActionLink("Back to List", "Index")

@@ -1,5 +1,6 @@
 ﻿using EmployeeHelper.Data;
 using EmployeeHelper.Models.EmployeeModels;
+using EmployeeHelper.Models.OTModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,6 +56,26 @@ namespace EmployeeHelper.Services
             }
         }
 
+        //public EmployeeDetail GetEmployeeById(int id)
+        //{
+        //    using (ApplicationDbContext ctx = new ApplicationDbContext())
+        //    {
+        //        Employee entity =
+        //            ctx.
+        //            Employees.
+        //            SingleOrDefault(e => e.EmployeeId == id && e.EmployeeGuid == _userId);
+        //        return new EmployeeDetail
+        //        {
+        //            EmployeeId = entity.EmployeeId,
+        //            FirstName = entity.FirstName,
+        //            LastName = entity.LastName,
+        //            HiringDate = entity.HiringDate.Date,
+        //            Shifts = entity.Shifts
+        //        };
+        //    }
+        //}
+
+        //TEST
         public EmployeeDetail GetEmployeeById(int id)
         {
             using (ApplicationDbContext ctx = new ApplicationDbContext())
@@ -63,16 +84,23 @@ namespace EmployeeHelper.Services
                     ctx.
                     Employees.
                     SingleOrDefault(e => e.EmployeeId == id && e.EmployeeGuid == _userId);
-                return new EmployeeDetail
+                return new EmployeeDetail()
                 {
                     EmployeeId = entity.EmployeeId,
                     FirstName = entity.FirstName,
                     LastName = entity.LastName,
                     HiringDate = entity.HiringDate.Date,
-                    Shifts = entity.Shifts
+                    Shifts = entity.Shifts,
+                    OTList = entity.ListOfOvertime.Select(e => new OverTimeListItem
+                    {
+                        OTId = e.OTId,
+                        OTDay = e.OTDay
+                    }).ToList()
                 };
             }
         }
+
+        //END TEST
 
         public bool UpdateEmployee(EmployeeEdit model)
         {

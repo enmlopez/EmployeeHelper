@@ -33,7 +33,8 @@ namespace EmployeeHelper.Data
 
         [Required]
         public DateTime HiringDate { get; set; }
-
-        public ICollection<OverTime> ListOfOvertime { get; set; } = new List<OverTime>();
+        //Test
+        public virtual List<OverTime> ListOfOvertime { get; set; } = new List<OverTime>();
+        //end test
     }
 }
