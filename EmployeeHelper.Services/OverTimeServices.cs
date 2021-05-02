@@ -14,7 +14,7 @@ namespace EmployeeHelper.Services
         {
             OverTime entity = new OverTime()
             {
-                IsAvailable = model.IsAvailable,
+                IsAvailable = false,
                 OTDay = model.OTDay,
                 HoursWorked = model.HoursWorked,
                 EmployeeId = model.EmployeeId,
@@ -108,7 +108,7 @@ namespace EmployeeHelper.Services
             using (ApplicationDbContext ctx = new ApplicationDbContext())
             {
                 OverTime entity = ctx.OverTimeDays.SingleOrDefault(e => e.OTId == model.OTId);
-                entity.IsAvailable = model.IsAvailable;
+                entity.IsAvailable = true;
                 entity.OTDay = model.OTDay;
                 entity.HoursWorked = model.HoursWorked;
                 entity.EmployeeId = model.EmployeeId;

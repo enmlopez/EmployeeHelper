@@ -25,8 +25,7 @@ namespace EmployeeHelper.Models.OTModels
         [Display(Name = "Hours?")]
         public decimal? HoursWorked { get; set; }
 
-        public Days Days { get; set; }
-
+        [Required]
         public int? EmployeeId { get; set; }
     }
 }
