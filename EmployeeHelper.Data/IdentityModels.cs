@@ -35,6 +35,8 @@ namespace EmployeeHelper.Data
         public DbSet<Employee> Employees { get; set; }
         public DbSet<OverTime> OverTimeDays { get; set; }
         public DbSet<BulkTechSamples> BulkTechSamples { get; set; }
+        public DbSet<TamcTymcSamples> TamcTymcSamples { get; set; }
+        public DbSet<BufferReplacement> BufferReplacements { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -54,11 +54,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BufferReplacement.cs" />
     <Compile Include="BulkTechSamples.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="IdentityModels.cs" />
     <Compile Include="OverTime.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TamcTymcSamples.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

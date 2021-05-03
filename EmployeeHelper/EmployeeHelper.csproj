@@ -168,11 +168,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BufferReplacementController.cs" />
     <Compile Include="Controllers\BulkTechController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OverTimeController.cs" />
+    <Compile Include="Controllers\TamcTymcController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -255,6 +257,18 @@
     <Content Include="Views\BulkTech\Delete.cshtml" />
     <Content Include="Views\OverTime\Work.cshtml" />
     <Content Include="Views\OverTime\ChooseOTList.cshtml" />
+    <Content Include="Views\TamcTymc\Index.cshtml" />
+    <Content Include="Views\TamcTymc\Create.cshtml" />
+    <Content Include="Views\TamcTymc\Details.cshtml" />
+    <Content Include="Views\TamcTymc\Edit.cshtml" />
+    <Content Include="Views\TamcTymc\Delete.cshtml" />
+    <Content Include="Views\TamcTymc\CompletedBy.cshtml" />
+    <Content Include="Views\BufferReplacement\Index.cshtml" />
+    <Content Include="Views\BufferReplacement\Create.cshtml" />
+    <Content Include="Views\BufferReplacement\Details.cshtml" />
+    <Content Include="Views\BufferReplacement\Edit.cshtml" />
+    <Content Include="Views\BufferReplacement\CompletedBy.cshtml" />
+    <Content Include="Views\BufferReplacement\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
