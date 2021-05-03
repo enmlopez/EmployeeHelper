@@ -254,6 +254,7 @@
     <Content Include="Views\BulkTech\Details.cshtml" />
     <Content Include="Views\BulkTech\Delete.cshtml" />
     <Content Include="Views\OverTime\Work.cshtml" />
+    <Content Include="Views\OverTime\ChooseOTList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

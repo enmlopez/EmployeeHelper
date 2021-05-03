@@ -14,7 +14,8 @@ namespace EmployeeHelper.Services
         {
             BulkTechSamples entity = new BulkTechSamples()
             {
-                DueOnDate = model.DueOnDate
+                DueOnDate = model.DueOnDate,
+                IsComplete = false
             };
 
             using (var ctx = new ApplicationDbContext())
@@ -89,7 +90,7 @@ namespace EmployeeHelper.Services
                 BulkTechSamples entity = ctx.BulkTechSamples.SingleOrDefault(e => e.BTId == model.BTId);
                 //entity.DueOnDate = model.DueOnDate;
                 entity.CompletedOnDate = DateTime.Now;
-                entity.IsComplete = model.IsComplete;
+                entity.IsComplete = true;
                 entity.EmployeeId = model.EmployeeId;
 
                 return ctx.SaveChanges() == 1;

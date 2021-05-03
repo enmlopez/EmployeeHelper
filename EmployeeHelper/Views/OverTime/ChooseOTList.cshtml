@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<EmployeeHelper.Models.OTModels.OverTimeListItem>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "ChooseOTList";
 }
 
 <h2>Index</h2>
@@ -10,14 +10,14 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 
-@if (TempData.ContainsKey("SaveOTResult"))
+@if (TempData.ContainsKey("SaveOTWork"))
 {
     <div class="alert alert-success fade in" role="alert">
 
         <button type="button" class="close" data-dismiss="alert">
             <span>&times;</span>
         </button>
-        @TempData["SaveOTResult"]
+        @TempData["SaveOTWork"]
     </div>
 }
 <table class="table">
@@ -54,11 +54,12 @@
                 @Html.DisplayFor(modelItem => item.IsAvailable)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.OTId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.OTId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.OTId })
+                @Html.ActionLink("Work", "Work", new { id = item.OTId })
             </td>
         </tr>
     }
 
 </table>
+<div>
+    @Html.ActionLink("Employee List", "Index", "Employee")
+</div>

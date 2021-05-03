@@ -1,5 +1,9 @@
-﻿using EmployeeHelper.Models.OTModels;
+﻿using EmployeeHelper.Data;
+using EmployeeHelper.Models.OTModels;
 using EmployeeHelper.Services;
+//test
+using Microsoft.AspNet.Identity;
+//end test
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +16,14 @@ namespace EmployeeHelper.Controllers
     {
         // GET: OverTime
         public ActionResult Index()
+        {
+            OverTimeServices service = new OverTimeServices();
+            IEnumerable<OverTimeListItem> model = service.GetOT();
+            return View(model);
+        }
+
+
+        public ActionResult ChooseOTList()
         {
             OverTimeServices service = new OverTimeServices();
             IEnumerable<OverTimeListItem> model = service.GetOT();
@@ -99,7 +111,7 @@ namespace EmployeeHelper.Controllers
 
         // // // // // // // //
 
-        //GET: OverTime/Edit/{id}
+        //GET: OverTime/Work/{id}
         public ActionResult Work(int id)
         {
             OverTimeServices service = new OverTimeServices();
@@ -109,12 +121,12 @@ namespace EmployeeHelper.Controllers
                 OTId = detail.OTId,
                 IsAvailable = detail.IsAvailable,
                 OTDay = detail.OTDay,
-                HoursWorked = detail.HoursWorked,
+                HoursWorked = detail.HoursWorked
             };
             return View(model);
         }
 
-        //POST: OverTime/Edit{id}
+        //POST: OverTime/Work{id}
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Work(int id, OverTimeWork model)
@@ -134,8 +146,8 @@ namespace EmployeeHelper.Controllers
 
             if (service.WorkOverTime(model))
             {
-                TempData["SaveOTResult"] = $"OverTime {model.OTDay.ToLongDateString()} was updated.";
-                return RedirectToAction("Index");
+                TempData["SaveOTWork"] = $"OverTime {model.OTDay.ToLongDateString()} was updated.";
+                return RedirectToAction("ChooseOTList");
             }
 
             ModelState.AddModelError("", "OverTime could not be updated.");

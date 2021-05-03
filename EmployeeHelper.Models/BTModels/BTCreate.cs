@@ -11,5 +11,6 @@ namespace EmployeeHelper.Models.BTModels
     {
         [Display(Name = "Due Date")]
         public DateTime DueOnDate { get; set; }
+        public bool IsComplete { get; set; }
     }
 }

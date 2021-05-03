@@ -123,6 +123,8 @@ namespace EmployeeHelper.Controllers
 
             return RedirectToAction("Index");
         }
+
+        //test changed to public - revert back if needed
         private EmployeeService CreateEmployeeService()
         {
             Guid userId = Guid.Parse(User.Identity.GetUserId());
