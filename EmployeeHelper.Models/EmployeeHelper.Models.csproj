@@ -72,6 +72,10 @@
     <Compile Include="OTModels\OverTimeListItem.cs" />
     <Compile Include="OTModels\OverTimeWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShiftModels\ShiftCreate.cs" />
+    <Compile Include="ShiftModels\ShiftDetail.cs" />
+    <Compile Include="ShiftModels\ShiftEdit.cs" />
+    <Compile Include="ShiftModels\ShiftListItem.cs" />
     <Compile Include="TModels\TCreate.cs" />
     <Compile Include="TModels\TDetail.cs" />
     <Compile Include="TModels\TEdit.cs" />

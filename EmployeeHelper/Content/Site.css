@@ -1,7 +1,54 @@
-﻿body {
+﻿.jumbotron{
+    background-image: url('Assets/bg_edited.png');
+    background-size:cover;
+    color:whitesmoke;
+    z-index:1000;
+}
+
+.homepage .col-md-4 h2 {
+    text-align: center;
+    color: whitesmoke;
+    font-size: 50px;
+}
+.homepage .col-md-4 p {
+    text-align: center;
+    color: whitesmoke;
+    font-size: 20px;
+}
+
+.row .col-md-4 .btn{
+    color:ivory;
+    background-color:darkslategray;
+    border-color:black;
+    border:solid 2px;
+}
+body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-image: url('Assets/StoneWall.jpg');
+    background-size:cover;
 }
+body p, h1, h2, h3, h4, th, td, dt, dd{
+    color: whitesmoke;
+    font-size: 20px;
+    font-weight:700;
+}
+
+body p > a{
+    color:coral;
+    font-size:20px;
+}
+
+div a{
+    color: coral;
+    font-size:20px;
+}
+
+.form-group label{
+    color:lavender;
+    font-size: 17px;
+}
+
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
@@ -22,3 +69,51 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.footer p{
+    color:whitesmoke;
+    font-size:large;
+}
+
+/*test start here*/
+.note-board {
+    background-image: url('Assets/Grass1382.jpg');
+    border: 5px solid black;
+    /*padding: 1px;*/
+    display: flex;
+    /*padding-top: 2em;*/
+    padding: 10%;
+    background-size: contain;
+}
+
+.note-card {
+    border: 1px solid black;
+    margin-bottom: 1em;
+    border-radius: 2em;
+    background-image: url('Assets/Concrete.jpg');
+    text-align: center;
+    overflow: hidden;
+    padding-bottom: 50%;
+    background-size:cover;
+}
+
+.note-tools {
+    position: absolute;
+    bottom: 2em;
+    right: 15%;
+}
+
+.note-head {
+    background-color:  lightskyblue;
+    border: 1px solid black;
+    /*color: white;*/
+}
+
+    .note-head a {
+        /*color: white;*/
+    }
+
+        .note-head a:hover {
+            text-decoration: none;
+            font-weight: bold;
+        }

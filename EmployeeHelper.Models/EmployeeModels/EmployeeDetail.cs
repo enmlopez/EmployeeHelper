@@ -1,7 +1,9 @@
 ﻿using EmployeeHelper.Data;
 using EmployeeHelper.Models.BTModels;
+using EmployeeHelper.Models.BufferModels;
 //test
 using EmployeeHelper.Models.OTModels;
+using EmployeeHelper.Models.TModels;
 //end test
 using System;
 using System.Collections.Generic;
@@ -14,7 +16,7 @@ namespace EmployeeHelper.Models.EmployeeModels
 {
     public class EmployeeDetail
     {
-        [Display(Name="ID")]
+        [Display(Name = "ID")]
         public int EmployeeId { get; set; }
 
         [Display(Name = "First Name")]
@@ -22,7 +24,7 @@ namespace EmployeeHelper.Models.EmployeeModels
 
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
-        
+
         [Display(Name = "Hiring Date")]
         public DateTime HiringDate { get; set; }
 
@@ -32,6 +34,10 @@ namespace EmployeeHelper.Models.EmployeeModels
 
         //test
         public virtual List<BTListItem> BTList { get; set; }
+
+        public virtual List<TListItem> TList { get; set; }
+
+        public virtual List<BufferListItem> BufferList { get; set; }
         //end test
     }
 }

@@ -37,6 +37,7 @@ namespace EmployeeHelper.Data
         public DbSet<BulkTechSamples> BulkTechSamples { get; set; }
         public DbSet<TamcTymcSamples> TamcTymcSamples { get; set; }
         public DbSet<BufferReplacement> BufferReplacements { get; set; }
+        public DbSet<ShiftTable> Shifts { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

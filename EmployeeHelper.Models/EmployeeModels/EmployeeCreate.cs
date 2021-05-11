@@ -29,5 +29,8 @@ namespace EmployeeHelper.Models.EmployeeModels
         [Required]
         public Shift Shift { get; set; }
 
+        [Required]
+        public int ShiftId { get; set; }
+
     }
 }

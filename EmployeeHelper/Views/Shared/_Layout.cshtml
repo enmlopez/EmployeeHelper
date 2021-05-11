@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Employee Helper</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -21,12 +21,12 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Employees", "Index", "Employee")</li>
                     <li>@Html.ActionLink("OverTime", "Index", "OverTime")</li>
+                    <li>@Html.ActionLink("Shifts", "Index", "Shift")</li>
+                    <li>@Html.ActionLink("Buffers", "Index", "BufferReplacement")</li>
                     <li>@Html.ActionLink("Bulk/Tech", "Index", "BulkTech")</li>
                     <li>@Html.ActionLink("Tamc/Tymc", "Index", "TamcTymc")</li>
-                    <li>@Html.ActionLink("Buffers", "Index", "BufferReplacement")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -35,8 +35,8 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        <footer class="footer">
+            <p>&copy; @DateTime.Now.Year - Employee Helper</p>
         </footer>
     </div>
 

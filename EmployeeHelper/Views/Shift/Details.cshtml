@@ -1,0 +1,74 @@
+﻿@model EmployeeHelper.Models.ShiftModels.ShiftDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ShiftDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ShiftId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShiftId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Shift)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Shift)
+        </dd>
+    </dl>
+</div>
+
+<h4>Employees</h4>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.EmployeePerShift[0].EmployeeId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmployeePerShift[0].FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmployeePerShift[0].LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmployeePerShift[0].HiringDate)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.EmployeePerShift)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmployeeId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @{ string formatDate = item.HiringDate.ToLongDateString();}
+                @Html.DisplayFor(modelItem => formatDate)
+            </td>
+            <td>
+                | @Html.ActionLink("Details", "Details", "Employee", new { id = item.EmployeeId }, "") |
+            </td>
+        </tr>
+    }
+
+</table>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ShiftId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

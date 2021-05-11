@@ -115,6 +115,76 @@
     }
 
 </table>
+<h4>TAMC/TYMC Samples</h4>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TList[0].TId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TList[0].IsComplete)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TList[0].DueOnDate)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.TList)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsComplete)
+            </td>
+            <td>
+                @{ string formatDate4 = item.DueOnDate.ToLongDateString();}
+                @Html.DisplayFor(modelItem => formatDate4)
+            </td>
+            <td>
+                | @Html.ActionLink("Details", "Details", "TamcTymc", new { id = item.TId }, "") |
+            </td>
+        </tr>
+    }
+
+</table>
+<h4>Buffer Replacement</h4>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BufferList[0].BufferId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BufferList[0].IsComplete)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BufferList[0].DueOnDate)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.BufferList)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BufferId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsComplete)
+            </td>
+            <td>
+                @{ string formatDate5 = item.DueOnDate.ToLongDateString();}
+                @Html.DisplayFor(modelItem => formatDate5)
+            </td>
+            <td>
+                | @Html.ActionLink("Details", "Details", "BufferReplacement", new { id = item.BufferId }, "") |
+            </td>
+        </tr>
+    }
+
+</table>
 <p>
     @Html.ActionLink("Update", "Update", new { id = Model.EmployeeId }) |
     @Html.ActionLink("Back to List", "Index")

@@ -18,6 +18,9 @@ namespace EmployeeHelper.Controllers
             EmployeeService service = CreateEmployeeService();
             IEnumerable<EmployeeListItem> model = service.GetEmployees();
 
+            ViewBag.Employee = service.GetEmployees();
+            //ViewBag.OverTime = new OverTimeServices().GetOT();
+
             return View(model);
         }
 

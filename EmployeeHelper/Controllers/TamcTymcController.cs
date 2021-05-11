@@ -112,7 +112,7 @@ namespace EmployeeHelper.Controllers
         public ActionResult DeleteT(int id)
         {
             TServices service = new TServices();
-            TempData["SaveTResult"] = $"Tamc/Tymc Sample {service.GetTById(id).DueOnDate.ToLongDateString()} was updated.";
+            TempData["SaveTResult"] = $"Tamc/Tymc Sample {service.GetTById(id).DueOnDate.ToLongDateString()} was removed.";
             if (service.DeleteT(id))
             {
                 return RedirectToAction("Index");

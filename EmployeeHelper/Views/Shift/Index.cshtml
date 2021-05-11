@@ -1,0 +1,45 @@
+﻿@model IEnumerable<EmployeeHelper.Models.ShiftModels.ShiftListItem>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@if (TempData.ContainsKey("SaveShiftResult"))
+{
+    <div class="alert alert-success fade in" role="alert">
+
+        <button type="button" class="close" data-dismiss="alert">
+            <span>&times;</span>
+        </button>
+        @TempData["SaveShiftResult"]
+    </div>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Shift)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Shift)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ShiftId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ShiftId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ShiftId })
+            </td>
+        </tr>
+    }
+
+</table>

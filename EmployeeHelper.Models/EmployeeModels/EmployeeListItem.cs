@@ -21,5 +21,7 @@ namespace EmployeeHelper.Models.EmployeeModels
         [MaxLength(10, ErrorMessage = "Too many characters")]
         public string LastName { get; set; }
         public Shift Shift { get; set; }
+        //test
+        public DateTime HiringDate { get; set; }
     }
 }

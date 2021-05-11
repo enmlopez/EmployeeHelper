@@ -1,19 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace EmployeeHelper.Data
 {
-    public enum Shift
-    {
-        A = 0,
-        B,
-        C,
-        D
-    }
+    
     public class Employee
     {
         [Key]
@@ -34,9 +29,17 @@ namespace EmployeeHelper.Data
         [Required]
         public DateTime HiringDate { get; set; }
 
+        [ForeignKey(nameof(Shift))]
+        public int ShiftId { get; set; }
+        public virtual ShiftTable Shift { get; set; }
+
         public virtual List<OverTime> ListOfOvertime { get; set; } = new List<OverTime>();
         //Test
         public virtual List<BulkTechSamples> ListOfBTSamples { get; set; } = new List<BulkTechSamples>();
+
+        public virtual List<TamcTymcSamples> ListOfTSamples { get; set; } = new List<TamcTymcSamples>();
+
+        public virtual List<BufferReplacement> ListOfBufferDates { get; set; } = new List<BufferReplacement>();
         //end test
     }
 }

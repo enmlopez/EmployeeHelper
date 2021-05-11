@@ -1,7 +1,10 @@
 ﻿using EmployeeHelper.Data;
 using EmployeeHelper.Models.BTModels;
+using EmployeeHelper.Models.BufferModels;
 using EmployeeHelper.Models.EmployeeModels;
 using EmployeeHelper.Models.OTModels;
+using EmployeeHelper.Models.ShiftModels;
+using EmployeeHelper.Models.TModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +30,7 @@ namespace EmployeeHelper.Services
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 HiringDate = model.HiringDate,
-                Shifts = model.Shift
+                ShiftId = model.ShiftId
             };
 
             using (ApplicationDbContext ctx = new ApplicationDbContext())
@@ -50,7 +53,8 @@ namespace EmployeeHelper.Services
                         EmployeeId = e.EmployeeId,
                         FirstName = e.FirstName,
                         LastName = e.LastName,
-                        Shift = e.Shifts
+                        Shift = e.Shift.Shift,
+                        HiringDate = e.HiringDate,
                     });
 
                 return query.ToArray();
@@ -71,7 +75,7 @@ namespace EmployeeHelper.Services
                     FirstName = entity.FirstName,
                     LastName = entity.LastName,
                     HiringDate = entity.HiringDate.Date,
-                    Shifts = entity.Shifts,
+                    Shifts = entity.Shift.Shift,
                     OTList = entity.ListOfOvertime.Select(e => new OverTimeListItem
                     {
                         OTId = e.OTId,
@@ -81,6 +85,18 @@ namespace EmployeeHelper.Services
                     BTList = entity.ListOfBTSamples.Select(e => new BTListItem
                     {
                         BTId = e.BTId,
+                        DueOnDate = e.DueOnDate,
+                        IsComplete = e.IsComplete
+                    }).ToList(),
+                    TList = entity.ListOfTSamples.Select(e => new TListItem
+                    {
+                        TId = e.TId,
+                        DueOnDate = e.DueOnDate,
+                        IsComplete = e.IsComplete
+                    }).ToList(),
+                    BufferList = entity.ListOfBufferDates.Select(e => new BufferListItem
+                    {
+                        BufferId = e.BufferId,
                         DueOnDate = e.DueOnDate,
                         IsComplete = e.IsComplete
                     }).ToList()
@@ -96,7 +112,7 @@ namespace EmployeeHelper.Services
                 entity.FirstName = model.FirstName;
                 entity.LastName = model.LastName;
                 entity.HiringDate = model.HiringDate;
-                entity.Shifts = model.Shifts;
+                //entity.Shifts = model.Shifts;
 
                 return ctx.SaveChanges() == 1;
             }

@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Index";
+    var shifts = ViewBag.Employee as IEnumerable<EmployeeHelper.Models.EmployeeModels.EmployeeListItem>;
 }
 
 <h2>Index</h2>
@@ -20,6 +21,122 @@
         @TempData["SaveResult"]
     </div>
 }
+
+<ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#allEmployees">All Employees</a></li>
+    @for (int i = 0; i < shifts.Count(); i++)
+    {
+        var shift = shifts.ElementAt(i);
+        <li>
+            <a data-toggle="tab" href="#employee@(shift.EmployeeId)">@shift.LastName</a>
+        </li>
+    }
+    <li><a data-toggle="tab" href="#tab2">Tab 2</a></li>
+    <li><a data-toggle="tab" href="#tab3">Tab 3</a></li>
+</ul>
+
+<div class="tab-content">
+    <div id="allEmployees" class="tab-pane fade in active">
+        <div class="note-board">
+            @foreach (var item in Model)
+            {
+                <div class=" card-container col-md-3 col-sm-6">
+                    <div class="note-card">
+                        <div class="note-head text-center">
+                            @Html.ActionLink(item.FirstName + " " + item.LastName, "Details", new { id = item.EmployeeId })
+                        </div>
+                        <div class=" note-body">
+                            <div class=" note-name">
+                                @{ string formatDate = item.HiringDate.ToShortDateString();}
+                                @Html.DisplayFor(modelItem => formatDate)
+                                @*@Html.DisplayFor(modelItem => item.LastName)*@
+                            </div>
+                            <div class=" text-center">
+                                @Html.DisplayFor(modelItem => item.Shift)
+                            </div>
+                            <div class=" note-tools">
+                                <a href="/Employee/Update/@item.EmployeeId"><img src="~/Content/Assets/Edit.png" /></a>
+                                <a href="/Employee/Delete/@item.EmployeeId"><img src="~/Content/Assets/Delete.png" /></a>
+                                <a href="./OverTime/ChooseOTList/@item.EmployeeId"><img src="~/Content/Assets/Work.png" /></a>
+                                @*@Html.ActionLink("Update", "Update", new { id = item.EmployeeId }) |*@
+                                @*@Html.ActionLink("Delete", "Delete", new { id = item.EmployeeId }) |*@
+                                @*@Html.ActionLink("Choose OT", "ChooseOTList", "OverTime", new { id = item.EmployeeId }, "")*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+    @for (int i = 0; i < shifts.Count(); i++)
+    {
+        var shift = shifts.ElementAt(i);
+        <div id="employee@(shift.EmployeeId)" class="tab-pane fade">
+            <div class=" note-board">
+                @foreach (var item in Model.Where(e => e.EmployeeId == shift.EmployeeId))
+                {
+                    <div class=" card-container col-md-3 col-sm-6">
+                        <div class="note-card">
+                            <div class="note-head text-center">
+                                @Html.ActionLink(item.FirstName + " " + item.LastName, "Details", new { id = item.EmployeeId })
+                            </div>
+                            <div class=" note-body">
+                                <div class=" note-name">
+                                    @{ string formatDate = item.HiringDate.ToShortDateString();}
+                                    @Html.DisplayFor(modelItem => formatDate)
+                                </div>
+                                <div class=" text-center">
+                                    @Html.DisplayFor(modelItem => item.Shift)
+                                </div>
+                                <div class=" note-tools">
+                                    <a href="/Employee/Details/@item.EmployeeId">Details</a>
+                                    @*@Html.ActionLink("Details", "Details", new { id = item.EmployeeId })*@
+                                    <a href="/Employee/Update/@item.EmployeeId"><img src="~/Content/Assets/Edit.png" /></a>
+                                    <a href="/Employee/Delete/@item.EmployeeId"><img src="~/Content/Assets/Delete.png" /></a>
+                                    <a href="/Employee/ChooseOTList/@item.EmployeeId"><img src="~/Content/Assets/Work.png" /></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+    }
+    <div id="tab3" class="tab-pane fade">
+        <h3>Tab 3</h3>
+        <p>Content for tab 3.</p>
+    </div>
+</div>
+
+@*<div class="note-board">
+        @foreach (var item in Model)
+        {
+            <div class=" card-container col-md-3 col-sm-6">
+                <div class="note-card">
+                    <div class="note-head text-center">
+                        @Html.ActionLink(item.FirstName + " " + item.LastName, "Details", new { id = item.EmployeeId })
+                    </div>
+                    <div class=" note-body">
+                        <div class=" note-name">
+                            @{ string formatDate = item.HiringDate.ToShortDateString();}
+                            @Html.DisplayFor(modelItem => formatDate)
+                        </div>
+                        <div class=" text-center">
+                            @Html.DisplayFor(modelItem => item.Shift)
+                        </div>
+                        <div class=" note-tools">
+                            <a href="/Employee/Update/@item.EmployeeId"><img src="~/Content/Assets/Edit.png" /></a>
+                            <a href="/Employee/Delete/@item.EmployeeId"><img src="~/Content/Assets/Delete.png" /></a>
+                            <a href="/Employee/ChooseOTList/@item.EmployeeId"><img src="~/Content/Assets/Work.png" /></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>*@
 <table class="table">
     <tr>
         <th>
