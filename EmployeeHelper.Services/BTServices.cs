@@ -1,4 +1,5 @@
-﻿using EmployeeHelper.Data;
+﻿using EmployeeHelper.Contracts;
+using EmployeeHelper.Data;
 using EmployeeHelper.Models.BTModels;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace EmployeeHelper.Services
 {
-    public class BTServices
+    public class BTServices : IBTServices
     {
         public bool BTCreate(BTCreate model)
         {

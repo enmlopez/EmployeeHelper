@@ -1,4 +1,5 @@
-﻿using EmployeeHelper.Models.BTModels;
+﻿using EmployeeHelper.Contracts;
+using EmployeeHelper.Models.BTModels;
 using EmployeeHelper.Services;
 using System;
 using System.Collections.Generic;
@@ -10,10 +11,16 @@ namespace EmployeeHelper.Controllers
 {
     public class BulkTechController : Controller
     {
+        private readonly IBTServices service;
+
+        public BulkTechController(IBTServices bTServices)
+        {
+            service = bTServices;
+        }
+
         // GET: BulkTech
         public ActionResult Index()
         {
-            BTServices service = new BTServices();
             IEnumerable<BTListItem> model = service.GetBT();
             return View(model);
         }
@@ -33,7 +40,6 @@ namespace EmployeeHelper.Controllers
             {
                 return View(model);
             }
-            BTServices service = new BTServices();
             if (service.BTCreate(model))
             {
                 TempData["SaveBTResult"] = $"Bulk/Tech Sample {model.DueOnDate.ToLongDateString()} was created.";
@@ -48,7 +54,6 @@ namespace EmployeeHelper.Controllers
         //GET: BulkTech/Details/{id}
         public ActionResult Details(int id)
         {
-            BTServices service = new BTServices();
             BTDetail model = service.GetBTById(id);
             return View(model);
         }
@@ -56,7 +61,6 @@ namespace EmployeeHelper.Controllers
         //GET: BulkTech/Edit/{id}
         public ActionResult Edit(int id)
         {
-            BTServices service = new BTServices();
             BTDetail detail = service.GetBTById(id);
             BTEdit model = new BTEdit
             {
@@ -84,7 +88,6 @@ namespace EmployeeHelper.Controllers
                 ModelState.AddModelError("", "ID does not match.");
                 return View(model);
             }
-            BTServices service = new BTServices();
             if (service.UpdateBT(model))
             {
                 TempData["SaveBTResult"] = $"Bulk/Tech Sample {service.GetBTById(id).DueOnDate.ToLongDateString()} was updated.";
@@ -99,7 +102,6 @@ namespace EmployeeHelper.Controllers
         [ActionName("Delete")]
         public ActionResult Delete(int id)
         {
-            BTServices service = new BTServices();
             BTDetail model = service.GetBTById(id);
 
             return View(model);
@@ -111,7 +113,6 @@ namespace EmployeeHelper.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteBT(int id)
         {
-            BTServices service = new BTServices();
             TempData["SaveBTResult"] = $"Bulk/Tech Sample {service.GetBTById(id).DueOnDate.ToLongDateString()} was updated.";
             if (service.DeleteBT(id))
             {
@@ -128,7 +129,6 @@ namespace EmployeeHelper.Controllers
         //GET: BulkTech/CompletedBy/{id}
         public ActionResult CompletedBy(int id)
         {
-            BTServices service = new BTServices();
             BTDetail detail = service.GetBTById(id);
             BTEdit model = new BTEdit
             {
@@ -156,7 +156,6 @@ namespace EmployeeHelper.Controllers
                 ModelState.AddModelError("", "ID does not match.");
                 return View(model);
             }
-            BTServices service = new BTServices();
             if (service.UpdateBTCompletedBy(model))
             {
                 TempData["SaveBTResult"] = $"Bulk/Tech Sample {service.GetBTById(id).DueOnDate.ToLongDateString()} was updated.";

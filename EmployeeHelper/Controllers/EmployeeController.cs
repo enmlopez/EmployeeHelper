@@ -1,4 +1,5 @@
-﻿using EmployeeHelper.Models.EmployeeModels;
+﻿using EmployeeHelper.Contracts;
+using EmployeeHelper.Models.EmployeeModels;
 using EmployeeHelper.Services;
 using Microsoft.AspNet.Identity;
 using System;
@@ -12,10 +13,15 @@ namespace EmployeeHelper.Controllers
     [Authorize]
     public class EmployeeController : Controller
     {
+        
         // GET: Employee
         public ActionResult Index()
         {
-            EmployeeService service = CreateEmployeeService();
+            //EmployeeService service = CreateEmployeeService();
+
+            Guid userId = Guid.Parse(User.Identity.GetUserId());
+            EmployeeService service = new EmployeeService(userId);
+
             IEnumerable<EmployeeListItem> model = service.GetEmployees();
 
             ViewBag.Employee = service.GetEmployees();
@@ -39,8 +45,8 @@ namespace EmployeeHelper.Controllers
             {
                 return View(model);
             }
-            var service = CreateEmployeeService();
-
+            Guid userId = Guid.Parse(User.Identity.GetUserId());
+            EmployeeService service = new EmployeeService(userId);
             if (service.CreateEmployee(model))
             {
                 TempData["SaveResult"] = "Employee successfully created.";
@@ -71,7 +77,7 @@ namespace EmployeeHelper.Controllers
                 FirstName = detail.FirstName,
                 LastName = detail.LastName,
                 HiringDate = detail.HiringDate,
-                Shifts = detail.Shifts
+                //Shifts = detail.Shifts
             };
 
             return View(model);
@@ -133,6 +139,7 @@ namespace EmployeeHelper.Controllers
             Guid userId = Guid.Parse(User.Identity.GetUserId());
             EmployeeService service = new EmployeeService(userId);
             return service;
+
         }
     }
 }

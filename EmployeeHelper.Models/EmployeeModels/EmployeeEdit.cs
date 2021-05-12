@@ -28,8 +28,8 @@ namespace EmployeeHelper.Models.EmployeeModels
         [Display(Name = "Hiring Date")]
         public DateTime HiringDate { get; set; }
 
-        [Required]
-        public Shift Shifts { get; set; }
+        //[Required]
+        //public Shift Shifts { get; set; }
 
     }
 }

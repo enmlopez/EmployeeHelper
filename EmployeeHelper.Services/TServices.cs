@@ -1,4 +1,5 @@
-﻿using EmployeeHelper.Data;
+﻿using EmployeeHelper.Contracts;
+using EmployeeHelper.Data;
 using EmployeeHelper.Models.TModels;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace EmployeeHelper.Services
 {
-    public class TServices
+    public class TServices : ITamcTymcServices
     {
         public bool TCreate(TCreate model)
         {

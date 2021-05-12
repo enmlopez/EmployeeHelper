@@ -20,6 +20,10 @@ namespace EmployeeHelper
             builder.RegisterModule<AutofacWebTypesModule>();
 
             builder.RegisterType<OverTimeServices>().As<IOverTimeServices>();
+            builder.RegisterType<BufferServices>().As<IBufferServices>();
+            builder.RegisterType<BTServices>().As<IBTServices>();
+            builder.RegisterType<ShiftServices>().As<IShiftServices>();
+            builder.RegisterType<TServices>().As<ITamcTymcServices>();
 
             //Set the dependency resolver to be Autofac.
             var container = builder.Build();

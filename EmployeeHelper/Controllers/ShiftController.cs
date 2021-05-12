@@ -1,4 +1,5 @@
-﻿using EmployeeHelper.Models.ShiftModels;
+﻿using EmployeeHelper.Contracts;
+using EmployeeHelper.Models.ShiftModels;
 using EmployeeHelper.Services;
 using System;
 using System.Collections.Generic;
@@ -10,10 +11,16 @@ namespace EmployeeHelper.Controllers
 {
     public class ShiftController : Controller
     {
+        private readonly IShiftServices service;
+
+        public ShiftController(IShiftServices shiftServices)
+        {
+            service = shiftServices;
+        }
+
         // GET: Shift
         public ActionResult Index()
         {
-            ShiftServices service = new ShiftServices();
             IEnumerable<ShiftListItem> model = service.GetShift();
             return View(model);
         }
@@ -33,7 +40,6 @@ namespace EmployeeHelper.Controllers
             {
                 return View(model);
             }
-            ShiftServices service = new ShiftServices();
             if (service.CreateShift(model))
             {
                 TempData["SaveShiftResult"] = $"Shift {model.Shift} was created.";
@@ -48,7 +54,6 @@ namespace EmployeeHelper.Controllers
         //GET: Shift/Details/{id}
         public ActionResult Details(int id)
         {
-            ShiftServices service = new ShiftServices();
             ShiftDetail model = service.GetShiftById(id);
             return View(model);
         }
@@ -56,7 +61,6 @@ namespace EmployeeHelper.Controllers
         //GET: Shift/Edit/{id}
         public ActionResult Edit(int id)
         {
-            ShiftServices service = new ShiftServices();
             ShiftDetail detail = service.GetShiftById(id);
             ShiftEdit model = new ShiftEdit
             {
@@ -82,7 +86,6 @@ namespace EmployeeHelper.Controllers
                 ModelState.AddModelError("", "ID does not match.");
                 return View(model);
             }
-            ShiftServices service = new ShiftServices();
             if (service.UpdateShift(model))
             {
                 TempData["SaveShiftResult"] = $"Shift {service.GetShiftById(id).Shift} was updated.";
@@ -97,7 +100,6 @@ namespace EmployeeHelper.Controllers
         [ActionName("Delete")]
         public ActionResult Delete(int id)
         {
-            ShiftServices service = new ShiftServices();
             ShiftDetail model = service.GetShiftById(id);
 
             return View(model);
@@ -109,7 +111,6 @@ namespace EmployeeHelper.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteT(int id)
         {
-            ShiftServices service = new ShiftServices();
             TempData["SaveShiftResult"] = $"Shift {service.GetShiftById(id).Shift} was deleted.";
             if (service.DeleteShift(id))
             {

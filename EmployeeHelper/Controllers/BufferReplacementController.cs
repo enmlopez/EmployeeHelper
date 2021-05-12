@@ -1,4 +1,5 @@
-﻿using EmployeeHelper.Models.BufferModels;
+﻿using EmployeeHelper.Contracts;
+using EmployeeHelper.Models.BufferModels;
 using EmployeeHelper.Services;
 using System;
 using System.Collections.Generic;
@@ -10,10 +11,17 @@ namespace EmployeeHelper.Controllers
 {
     public class BufferReplacementController : Controller
     {
+        private readonly IBufferServices service;
+
+        public BufferReplacementController(IBufferServices bufferServices)
+        {
+            service = bufferServices;
+        }
+
         // GET: BufferReplacement
         public ActionResult Index()
         {
-            BufferServices service = new BufferServices();
+            //BufferServices service = new BufferServices();
             IEnumerable<BufferListItem> model = service.GetBuffer();
             return View(model);
         }
@@ -33,7 +41,7 @@ namespace EmployeeHelper.Controllers
             {
                 return View(model);
             }
-            BufferServices service = new BufferServices();
+            //BufferServices service = new BufferServices();
             if (service.BufferCreate(model))
             {
                 TempData["SaveBufferResult"] = $"Buffer Replacement Date {model.DueOnDate.ToLongDateString()} was created.";
@@ -48,7 +56,7 @@ namespace EmployeeHelper.Controllers
         //GET: BufferReplacement/Details/{id}
         public ActionResult Details(int id)
         {
-            BufferServices service = new BufferServices();
+            //BufferServices service = new BufferServices();
             BufferDetail model = service.GetBufferById(id);
             return View(model);
         }
@@ -56,7 +64,7 @@ namespace EmployeeHelper.Controllers
         //GET: BufferReplacement/Edit/{id}
         public ActionResult Edit(int id)
         {
-            BufferServices service = new BufferServices();
+            //BufferServices service = new BufferServices();
             BufferDetail detail = service.GetBufferById(id);
             BufferEdit model = new BufferEdit
             {
@@ -84,7 +92,7 @@ namespace EmployeeHelper.Controllers
                 ModelState.AddModelError("", "ID does not match.");
                 return View(model);
             }
-            BufferServices service = new BufferServices();
+            //BufferServices service = new BufferServices();
             if (service.UpdateBuffer(model))
             {
                 TempData["SaveBTResult"] = $"Buffer Replacement Date {service.GetBufferById(id).DueOnDate.ToLongDateString()} was updated.";
@@ -99,7 +107,7 @@ namespace EmployeeHelper.Controllers
         [ActionName("Delete")]
         public ActionResult Delete(int id)
         {
-            BufferServices service = new BufferServices();
+            //BufferServices service = new BufferServices();
             BufferDetail model = service.GetBufferById(id);
 
             return View(model);
@@ -111,7 +119,7 @@ namespace EmployeeHelper.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteBuffer(int id)
         {
-            BufferServices service = new BufferServices();
+            //BufferServices service = new BufferServices();
             TempData["SaveBufferResult"] = $"Buffer Replacement Date {service.GetBufferById(id).DueOnDate.ToLongDateString()} was updated.";
             if (service.DeleteBuffer(id))
             {
@@ -128,7 +136,7 @@ namespace EmployeeHelper.Controllers
         //GET: BufferReplacement/CompletedBy/{id}
         public ActionResult CompletedBy(int id)
         {
-            BufferServices service = new BufferServices();
+            //BufferServices service = new BufferServices();
             BufferDetail detail = service.GetBufferById(id);
             BufferEdit model = new BufferEdit
             {
@@ -156,7 +164,7 @@ namespace EmployeeHelper.Controllers
                 ModelState.AddModelError("", "ID does not match.");
                 return View(model);
             }
-            BufferServices service = new BufferServices();
+            //BufferServices service = new BufferServices();
             if (service.UpdateBufferCompletedBy(model))
             {
                 TempData["SaveBufferResult"] = $"Buffer Replacement date {service.GetBufferById(id).DueOnDate.ToLongDateString()} was updated.";

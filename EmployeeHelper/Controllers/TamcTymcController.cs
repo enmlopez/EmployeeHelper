@@ -1,4 +1,5 @@
-﻿using EmployeeHelper.Models.TModels;
+﻿using EmployeeHelper.Contracts;
+using EmployeeHelper.Models.TModels;
 using EmployeeHelper.Services;
 using System;
 using System.Collections.Generic;
@@ -10,10 +11,16 @@ namespace EmployeeHelper.Controllers
 {
     public class TamcTymcController : Controller
     {
+        private readonly ITamcTymcServices service;
+
+        public TamcTymcController(ITamcTymcServices tServices)
+        {
+            service = tServices;
+        }
+
         // GET: TamcTymc
         public ActionResult Index()
         {
-            TServices service = new TServices();
             IEnumerable<TListItem> model = service.GetT();
             return View(model);
         }
@@ -33,7 +40,6 @@ namespace EmployeeHelper.Controllers
             {
                 return View(model);
             }
-            TServices service = new TServices();
             if (service.TCreate(model))
             {
                 TempData["SaveTResult"] = $"Tamc/Tymc Sample {model.DueOnDate.ToLongDateString()} was created.";
@@ -48,7 +54,6 @@ namespace EmployeeHelper.Controllers
         //GET: TamcTymc/Details/{id}
         public ActionResult Details(int id)
         {
-            TServices service = new TServices();
             TDetail model = service.GetTById(id);
             return View(model);
         }
@@ -56,7 +61,6 @@ namespace EmployeeHelper.Controllers
         //GET: TamcTymc/Edit/{id}
         public ActionResult Edit(int id)
         {
-            TServices service = new TServices();
             TDetail detail = service.GetTById(id);
             TEdit model = new TEdit
             {
@@ -84,7 +88,6 @@ namespace EmployeeHelper.Controllers
                 ModelState.AddModelError("", "ID does not match.");
                 return View(model);
             }
-            TServices service = new TServices();
             if (service.UpdateT(model))
             {
                 TempData["SaveTResult"] = $"Tamc/Tymc Sample {service.GetTById(id).DueOnDate.ToLongDateString()} was updated.";
@@ -99,7 +102,6 @@ namespace EmployeeHelper.Controllers
         [ActionName("Delete")]
         public ActionResult Delete(int id)
         {
-            TServices service = new TServices();
             TDetail model = service.GetTById(id);
 
             return View(model);
@@ -111,7 +113,6 @@ namespace EmployeeHelper.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteT(int id)
         {
-            TServices service = new TServices();
             TempData["SaveTResult"] = $"Tamc/Tymc Sample {service.GetTById(id).DueOnDate.ToLongDateString()} was removed.";
             if (service.DeleteT(id))
             {
@@ -128,7 +129,6 @@ namespace EmployeeHelper.Controllers
         //GET: TamcTymc/CompletedBy/{id}
         public ActionResult CompletedBy(int id)
         {
-            TServices service = new TServices();
             TDetail detail = service.GetTById(id);
             TEdit model = new TEdit
             {
@@ -156,7 +156,6 @@ namespace EmployeeHelper.Controllers
                 ModelState.AddModelError("", "ID does not match.");
                 return View(model);
             }
-            TServices service = new TServices();
             if (service.UpdateTCompletedBy(model))
             {
                 TempData["SaveTResult"] = $"Tamc/Tymc Sample {service.GetTById(id).DueOnDate.ToLongDateString()} was updated.";

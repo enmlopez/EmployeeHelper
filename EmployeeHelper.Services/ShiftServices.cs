@@ -1,4 +1,5 @@
-﻿using EmployeeHelper.Data;
+﻿using EmployeeHelper.Contracts;
+using EmployeeHelper.Data;
 using EmployeeHelper.Models.EmployeeModels;
 using EmployeeHelper.Models.ShiftModels;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace EmployeeHelper.Services
 {
-    public class ShiftServices
+    public class ShiftServices : IShiftServices
     {
         public bool CreateShift(ShiftCreate model)
         {

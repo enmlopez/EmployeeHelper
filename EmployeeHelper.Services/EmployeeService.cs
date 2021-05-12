@@ -1,4 +1,5 @@
-﻿using EmployeeHelper.Data;
+﻿using EmployeeHelper.Contracts;
+using EmployeeHelper.Data;
 using EmployeeHelper.Models.BTModels;
 using EmployeeHelper.Models.BufferModels;
 using EmployeeHelper.Models.EmployeeModels;

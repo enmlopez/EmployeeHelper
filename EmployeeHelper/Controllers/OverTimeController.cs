@@ -15,17 +15,17 @@ namespace EmployeeHelper.Controllers
 {
     public class OverTimeController : Controller
     {
-        private readonly IOverTimeServices _overTimeServices;
+        private readonly IOverTimeServices service;
 
         public OverTimeController(IOverTimeServices overTimeServices)
         {
-            _overTimeServices = overTimeServices;
+            service = overTimeServices;
         }
 
         // GET: OverTime
         public ActionResult Index()
         {
-            OverTimeServices service = new OverTimeServices();
+            //OverTimeServices service = new OverTimeServices();
             IEnumerable<OverTimeListItem> model = service.GetOT();
             return View(model);
         }
@@ -33,7 +33,7 @@ namespace EmployeeHelper.Controllers
 
         public ActionResult ChooseOTList()
         {
-            OverTimeServices service = new OverTimeServices();
+            //OverTimeServices service = new OverTimeServices();
             IEnumerable<OverTimeListItem> model = service.GetOT();
             return View(model);
         }
@@ -53,7 +53,7 @@ namespace EmployeeHelper.Controllers
             {
                 return View(model);
             }
-            OverTimeServices service = new OverTimeServices();
+            //OverTimeServices service = new OverTimeServices();
             if (service.OTCreate(model))
             {
                 TempData["SaveOTResult"] = $"OverTime {model.OTDay.ToLongDateString()} created.";
@@ -68,7 +68,7 @@ namespace EmployeeHelper.Controllers
         //GET: OverTime/Details
         public ActionResult Details(int id)
         {
-            OverTimeServices service = new OverTimeServices();
+            //OverTimeServices service = new OverTimeServices();
             OverTimeDetail model = service.GetOTById(id);
             return View(model);
         }
@@ -76,7 +76,7 @@ namespace EmployeeHelper.Controllers
         //GET: OverTime/Edit/{id}
         public ActionResult Edit(int id)
         {
-            OverTimeServices service = new OverTimeServices();
+            //OverTimeServices service = new OverTimeServices();
             OverTimeDetail detail = service.GetOTById(id);
             OverTimeEdit model = new OverTimeEdit
             {
@@ -105,7 +105,7 @@ namespace EmployeeHelper.Controllers
                 return View(model);
             }
 
-            OverTimeServices service = new OverTimeServices();
+            //OverTimeServices service = new OverTimeServices();
 
             if (service.UpdateOverTime(model))
             {
@@ -122,7 +122,7 @@ namespace EmployeeHelper.Controllers
         //GET: OverTime/Work/{id}
         public ActionResult Work(int id)
         {
-            OverTimeServices service = new OverTimeServices();
+            //OverTimeServices service = new OverTimeServices();
             OverTimeDetail detail = service.GetOTById(id);
             OverTimeWork model = new OverTimeWork
             {
@@ -150,7 +150,7 @@ namespace EmployeeHelper.Controllers
                 return View(model);
             }
 
-            OverTimeServices service = new OverTimeServices();
+            //OverTimeServices service = new OverTimeServices();
 
             if (service.WorkOverTime(model))
             {
@@ -168,7 +168,7 @@ namespace EmployeeHelper.Controllers
         [ActionName("Delete")]
         public ActionResult Delete(int id)
         {
-            OverTimeServices service = new OverTimeServices();
+            //OverTimeServices service = new OverTimeServices();
             OverTimeDetail model = service.GetOTById(id);
 
             return View(model);
@@ -180,7 +180,7 @@ namespace EmployeeHelper.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteOT(int id)
         {
-            OverTimeServices service = new OverTimeServices();
+            //OverTimeServices service = new OverTimeServices();
             TempData["SaveOTResult"] = $"OverTime {service.GetOTById(id).OTDay.ToLongDateString()} was removed.";
             service.DeleteOverTime(id);
 
