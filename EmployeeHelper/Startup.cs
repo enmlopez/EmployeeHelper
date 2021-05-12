@@ -1,5 +1,10 @@
-﻿using Microsoft.Owin;
+﻿using Autofac;
+using Autofac.Integration.Mvc;
+using EmployeeHelper.Contracts;
+using EmployeeHelper.Services;
+using Microsoft.Owin;
 using Owin;
+using System.Web.Mvc;
 
 [assembly: OwinStartupAttribute(typeof(EmployeeHelper.Startup))]
 namespace EmployeeHelper
@@ -8,6 +13,18 @@ namespace EmployeeHelper
     {
         public void Configuration(IAppBuilder app)
         {
+            var builder = new ContainerBuilder();
+
+            builder.RegisterControllers(typeof(MvcApplication).Assembly);
+            //OPTIONAL: Register web abstractions like HttpContextBase.
+            builder.RegisterModule<AutofacWebTypesModule>();
+
+            builder.RegisterType<OverTimeServices>().As<IOverTimeServices>();
+
+            //Set the dependency resolver to be Autofac.
+            var container = builder.Build();
+            DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+
             ConfigureAuth(app);
         }
     }

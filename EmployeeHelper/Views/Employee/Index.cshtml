@@ -22,7 +22,7 @@
     </div>
 }
 
-<ul class="nav nav-tabs">
+@*<ul class="nav nav-tabs">
     <li class="active"><a data-toggle="tab" href="#allEmployees">All Employees</a></li>
     @for (int i = 0; i < shifts.Count(); i++)
     {
@@ -49,7 +49,6 @@
                             <div class=" note-name">
                                 @{ string formatDate = item.HiringDate.ToShortDateString();}
                                 @Html.DisplayFor(modelItem => formatDate)
-                                @*@Html.DisplayFor(modelItem => item.LastName)*@
                             </div>
                             <div class=" text-center">
                                 @Html.DisplayFor(modelItem => item.Shift)
@@ -58,9 +57,6 @@
                                 <a href="/Employee/Update/@item.EmployeeId"><img src="~/Content/Assets/Edit.png" /></a>
                                 <a href="/Employee/Delete/@item.EmployeeId"><img src="~/Content/Assets/Delete.png" /></a>
                                 <a href="./OverTime/ChooseOTList/@item.EmployeeId"><img src="~/Content/Assets/Work.png" /></a>
-                                @*@Html.ActionLink("Update", "Update", new { id = item.EmployeeId }) |*@
-                                @*@Html.ActionLink("Delete", "Delete", new { id = item.EmployeeId }) |*@
-                                @*@Html.ActionLink("Choose OT", "ChooseOTList", "OverTime", new { id = item.EmployeeId }, "")*@
                             </div>
                         </div>
                     </div>
@@ -90,8 +86,7 @@
                                     @Html.DisplayFor(modelItem => item.Shift)
                                 </div>
                                 <div class=" note-tools">
-                                    <a href="/Employee/Details/@item.EmployeeId">Details</a>
-                                    @*@Html.ActionLink("Details", "Details", new { id = item.EmployeeId })*@
+                                    @Html.ActionLink("Details", "Details", new { id = item.EmployeeId })
                                     <a href="/Employee/Update/@item.EmployeeId"><img src="~/Content/Assets/Edit.png" /></a>
                                     <a href="/Employee/Delete/@item.EmployeeId"><img src="~/Content/Assets/Delete.png" /></a>
                                     <a href="/Employee/ChooseOTList/@item.EmployeeId"><img src="~/Content/Assets/Work.png" /></a>
@@ -108,7 +103,10 @@
         <h3>Tab 3</h3>
         <p>Content for tab 3.</p>
     </div>
-</div>
+</div>*@
+
+
+@*--------------------------------------------------------------------test------------------------------------------------------------------*@
 
 @*<div class="note-board">
         @foreach (var item in Model)

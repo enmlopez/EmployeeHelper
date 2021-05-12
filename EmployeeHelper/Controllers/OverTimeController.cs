@@ -1,4 +1,5 @@
-﻿using EmployeeHelper.Data;
+﻿using EmployeeHelper.Contracts;
+using EmployeeHelper.Data;
 using EmployeeHelper.Models.OTModels;
 using EmployeeHelper.Services;
 //test
@@ -14,6 +15,13 @@ namespace EmployeeHelper.Controllers
 {
     public class OverTimeController : Controller
     {
+        private readonly IOverTimeServices _overTimeServices;
+
+        public OverTimeController(IOverTimeServices overTimeServices)
+        {
+            _overTimeServices = overTimeServices;
+        }
+
         // GET: OverTime
         public ActionResult Index()
         {
